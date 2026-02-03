@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const axiosClient =axios.create({
-    baseURL:"https://code-master-frontend.vercel.app",//backend host
+    baseURL:"https://code-master-seven.vercel.app",//backend host
     withCredentials:true, //telling brower to add cookies with it
     headers:{
         'Content-Type':'application/json' //data is send in form of json
