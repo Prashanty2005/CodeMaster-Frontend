@@ -1,16 +1,17 @@
-import axios from "axios"
+import axios from "axios";
 
-const axiosClient =axios.create({
-    baseURL:"https://code-master-seven.vercel.app",//backend host
-    withCredentials:true, //telling brower to add cookies with it
-    headers:{
-        'Content-Type':'application/json' //data is send in form of json
-    }
-})
+const axiosClient = axios.create({
+  baseURL:
+    import.meta.env.MODE === "development"
+      ? "http://localhost:3000"
+      : "https://code-master-seven.vercel.app",
+  withCredentials: true,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
-// axiosClient.post("/user/register",data)
 export default axiosClient;
-
 
 
 

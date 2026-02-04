@@ -59,22 +59,23 @@ function Homepage() {
     });
   };
 
-  const filteredProblems = problems.filter(problem => {
+  // REPLACE THIS BLOCK IN HOMEPAGE.JSX
+const filteredProblems = Array.isArray(problems) ? problems.filter(problem => {
     // Search filter
     const searchMatch = searchTerm === '' || 
-                       problem.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                       problem.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+        problem.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        problem.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
     
     const difficultyMatch = filters.difficulty === 'all' || problem.difficulty === filters.difficulty;
     
     const statusMatch = filters.status === 'all' || 
-                      (filters.status === 'solved' && solvedProblems.some(sp => sp._id === problem._id));
+        (filters.status === 'solved' && solvedProblems.some(sp => sp._id === problem._id));
     
     const tagMatch = filters.tags.length === 0 || 
-                     filters.tags.every(selectedTag => problem.tags.includes(selectedTag));
+        filters.tags.every(selectedTag => problem.tags.includes(selectedTag));
 
     return searchMatch && difficultyMatch && statusMatch && tagMatch;
-  });
+}) : []; // <--- If problems is not an array, default to empty list []
 
   const solvedCount = solvedProblems.length;
   const totalProblems = problems.length;
